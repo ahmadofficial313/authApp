@@ -5,14 +5,16 @@ import { AuthContext } from "../store/auth-context";
 
 function WelcomeScreen() {
   const [fetchedMessage, setFetchedMessage] = useState("");
-  const authCtx = useContext(AuthContext)
-  const token = authCtx.token;
-  useEffect(()=>{
-    axios.get('https://expenseapp-c090b-default-rtdb.firebaseio.com/message.json?auth=' + token)
-    .then((response)=>{
-      setFetchedMessage(response.data)
-    })
-  },[token])
+  //const authCtx = useContext(AuthContext)
+  //const token = authCtx.token;
+  //useEffect(()=>{
+  //axios.get('https://expenseapp-c090b-default-rtdb.firebaseio.com/message.json?auth=' + token)
+  axios
+    .get("https://expenseapp-c090b-default-rtdb.firebaseio.com/message.json")
+    .then((response) => {
+      setFetchedMessage(response.data);
+    });
+  //},[])
   return (
     <View style={styles.rootContainer}>
       <Text style={styles.title}>Welcome!</Text>
